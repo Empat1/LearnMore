@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.learnmore.ui.account.AccountFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.learnmore.ui.card.CardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_card" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_navigation_dictionary_menu"
+            app:destination="@id/navigation_dictionary_menu" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.learnmore.ui.store.StoreFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_store" />
+
+    <fragment
+        android:id="@+id/navigation_dictionary_menu"
+        android:name="com.example.learnmore.DictionaryMenuFragment"
+        android:label="меню словаря"
+        tools:layout="@layout/fragment_dictionary_menu">
+        <argument
+            android:name="language_name"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_navigation_dictionary_menu_to_navigation_read_card"
+            app:destination="@id/navigation_read_all_card" />
+        <action
+            android:id="@+id/action_navigation_dictionary_menu_to_navigation_memorization"
+            app:destination="@id/navigation_memorization" />
+        <action
+            android:id="@+id/action_navigation_dictionary_menu_to_navigation_write_card"
+            app:destination="@id/navigation_write_card" />
+        <action
+            android:id="@+id/action_navigation_dictionary_menu_to_fragment_add_card"
+            app:destination="@id/fragment_add_card" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_read_all_card"
+        android:name="com.example.learnmore.ui.readCard.ReadCardFragment"
+        android:label="Чтение карт"
+        tools:layout="@layout/fragment_read_card">
+        <action
+            android:id="@+id/action_navigation_read_all_card_to_fragment_add_card"
+            app:destination="@id/fragment_add_card" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_memorization"
+        android:name="com.example.learnmore.ui.readCard.MemorizationFragment"
+        android:label="Запоминание карт"
+        tools:layout="@layout/fragment_memorization"/>
+
+    <fragment
+        android:id="@+id/navigation_write_card"
+        android:name="com.example.learnmore.ui.readCard.WriteCardFragment"
+        android:label="Письмо карт"
+        tools:layout="@layout/fragment_write_card"/>
+
+    <fragment
+        android:id="@+id/fragment_add_card"
+        android:name="com.example.learnmore.ui.readCard.AddCardFragment"
+        android:label="Добавить карту"
+        tools:layout="@layout/fragment_add_card"/>
+
+</navigation>
