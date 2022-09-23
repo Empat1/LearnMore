@@ -33,7 +33,7 @@ class ReadCardFragment : Fragment() {
 
         readCardViewModel = ViewModelProvider(this).get(ReadCardViewModel::class.java)
 
-        readCardViewModel!!.words.observe(viewLifecycleOwner){
+        readCardViewModel!!.getWord().observe(viewLifecycleOwner){
             val adapter = MyWordsRecyclerViewAdapter(it , findNavController())
             rvList.adapter = adapter;
         }

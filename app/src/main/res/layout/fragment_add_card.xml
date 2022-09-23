@@ -48,13 +48,13 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
-            android:id="@+id/checkWord"
+            android:id="@+id/delWord"
             android:text="Удалить"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/nextWord"
+            android:id="@+id/saveWord"
             android:text="Добавить"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

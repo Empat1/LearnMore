@@ -28,14 +28,14 @@ class MemorizationFragment : Fragment() {
         val word_translate = view.findViewById<TextView>(R.id.word_translate)
         val wordNext = view.findViewById<Button>(R.id.nextWord)
 
-        readCardViewModel!!.words.observe(viewLifecycleOwner){
+        readCardViewModel!!.getWord().observe(viewLifecycleOwner){
             val word = it.get( Random.nextInt(0 , it.size))
             word_text.text = word.word_text
             word_translate.text = word.word_translate
         }
 
         wordNext.setOnClickListener(View.OnClickListener {
-            val wordDate = readCardViewModel!!.words.value;
+            val wordDate = readCardViewModel!!.getWord().value;
             val word = wordDate!!.get(Random.nextInt(0 , wordDate.size))
             word_text.text = word.word_text
             word_translate.text = word.word_translate

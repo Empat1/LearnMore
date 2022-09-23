@@ -29,6 +29,7 @@ class CardViewModel : ViewModel() {
                 response: Response<List<Dictionary>>
             ) {
                 value = response.body();
+                println()
             }
 
             override fun onFailure(call: Call<List<Dictionary>>, t: Throwable) {

@@ -1,6 +1,5 @@
 package com.example.learnmore.ui.readCard
 
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +13,7 @@ import com.example.learnmore.R
 import com.example.learnmore.data.model.Word
 import kotlin.random.Random
 
-class WriteCardFragment : Fragment() {
+class WriteCardFragment : Fragment() { //сам экран
 
     var readCardViewModel: ReadCardViewModel? = null
 
@@ -29,23 +28,23 @@ class WriteCardFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_write_card, container, false)
-        readCardViewModel = ViewModelProvider(this).get(ReadCardViewModel::class.java)
+        readCardViewModel = ViewModelProvider(this).get(ReadCardViewModel::class.java) //ищем модель
 
-        wordText = view.findViewById<TextView>(R.id.word_text)
+        wordText = view.findViewById<TextView>(R.id.word_text) //Связываем XML и KT
         wordTranslate = view.findViewById<EditText>(R.id.word_translate)
         val wordNext = view.findViewById<Button>(R.id.nextWord)
         val wordCheck = view.findViewById<Button>(R.id.checkWord)
         wordTextCheck = view.findViewById<TextView>(R.id.word_check)
 
-        readCardViewModel!!.words.observe(viewLifecycleOwner){
+
+        readCardViewModel!!.getWord().observe(viewLifecycleOwner){
             thisWord = it.get( Random.nextInt(0 , it.size))
             wordText!!.text = thisWord.word_text
         }
 
-//        val thisWord;
 
         wordNext.setOnClickListener(View.OnClickListener {
-            f()
+            knowWord() //незнаю слово
         })
 
         wordCheck.setOnClickListener(View.OnClickListener {
@@ -56,14 +55,14 @@ class WriteCardFragment : Fragment() {
         return view
     }
 
-    fun f(){
+    fun knowWord(){
         wordTextCheck!!.text = thisWord.word_translate;
         wordTextCheck.visibility = View.VISIBLE
     }
 
     fun newWord(){
 
-        val wordDate = readCardViewModel!!.words.value;
+        val wordDate = readCardViewModel!!.getWord().value;
         thisWord = wordDate!!.get(Random.nextInt(0 , wordDate.size))
         wordText!!.text = thisWord.word_text
     }

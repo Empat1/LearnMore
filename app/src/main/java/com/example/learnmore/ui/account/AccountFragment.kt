@@ -19,6 +19,7 @@ import com.example.learnmore.data.model.Model
 import com.example.learnmore.data.model.Model.user
 import com.example.learnmore.data.model.Users
 import com.example.learnmore.databinding.FragmentAccountBinding
+import com.example.learnmore.ui.readCard.ReadCardViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -91,6 +92,7 @@ class AccountFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         Model.language = Model.user!!.languages!!.get(p2);
+
         println(Model.language)
     }
 

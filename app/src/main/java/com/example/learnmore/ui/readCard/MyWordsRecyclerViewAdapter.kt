@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import com.example.learnmore.R
 import com.example.learnmore.data.model.Word
@@ -24,6 +25,7 @@ class MyWordsRecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.word_read_item, parent , false)
+
         return ViewHolder(view)
 
     }

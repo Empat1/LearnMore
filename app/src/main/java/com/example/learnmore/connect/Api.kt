@@ -22,7 +22,7 @@ interface Api {
     fun saveThisUser(@Body employee: Users?) :Call<Users?>?
 
     @GET("/language/get-all")
-    fun getAllProducts(): Call<List<Language>>
+    fun getAllLanguage(): Call<List<Language>>
 
     @GET("/sub/get-all")
     fun getAllSub(): Call<List<Dictionary>>
@@ -34,5 +34,8 @@ interface Api {
     fun getDictionary(@Path("language_name") language:String) :Call<List<Dictionary>>
 
     @GET("/words/{language_id}/{dictionary_id}")
-    fun getWord(@Path("language_id") language_id :Int ,@Path("dictionary_id")dictionary_id :Int): Call<List<Word>>
+    fun getWords(@Path("language_id") language_id :Int, @Path("dictionary_id")dictionary_id :Int): Call<List<Word>>
+
+    @POST("/word/save/{dictionary_id}")
+    fun saveWord(@Body word: Word, @Path("dictionary_id") dictionary_id: Int) : Call<Word>
 }

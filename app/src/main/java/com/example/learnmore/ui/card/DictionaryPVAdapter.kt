@@ -32,7 +32,10 @@ class DictionaryPVAdapter(var dictionaries: List<Dictionary> , val navController
         holder.text.setOnClickListener(View.OnClickListener {
             navigateToDictionaryMenu(dictionaries[position].dictionary_name)
             Model.dictionary = dictionaries[position]
+            println()
         })
+
+
 
     }
 

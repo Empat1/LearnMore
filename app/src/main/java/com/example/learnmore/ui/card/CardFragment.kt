@@ -56,6 +56,7 @@ class CardFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         dashboardViewModel.setDictionary()
+
     }
 
     fun navigateToDictionaryMenu(language_name:String){
