@@ -45,7 +45,7 @@ class AddCardFragment : Fragment() {
         btnAdd.setOnClickListener(View.OnClickListener {
             val text = tvWord.text.toString();
             val translate = tvTranslate.text.toString();
-            val word = Word(word_text = text , word_translate = translate , id_dictionary = dictionaryId , word_id = 101);
+            val word = Word(word_text = text , word_translate = translate , dictionary_id = dictionaryId , word_id = 101);
             addRequestServer(word =  word ,dictionaryId )
         })
 

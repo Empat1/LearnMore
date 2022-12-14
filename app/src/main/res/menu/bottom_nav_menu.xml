@@ -16,4 +16,9 @@
         android:icon="@drawable/basket"
         android:title="Магазин" />
 
+    <item
+        android:id="@+id/appealsFragment"
+        android:icon="@drawable/ic_baseline_sms_failed_24"
+        android:title="Обращения"/>
+
 </menu>

@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.example.learnmore.ui.account.AccountFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_navigation_home_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -18,7 +22,7 @@
         tools:layout="@layout/fragment_card" >
         <action
             android:id="@+id/action_navigation_dashboard_to_navigation_dictionary_menu"
-            app:destination="@id/navigation_dictionary_menu" />
+            app:destination="@id/navigation" />
     </fragment>
 
     <fragment
@@ -27,54 +31,77 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_store" />
 
+    <navigation android:id="@+id/navigation"
+        app:startDestination="@id/navigation_dictionary_menu">
+        <fragment
+            android:id="@+id/navigation_dictionary_menu"
+            android:name="com.example.learnmore.DictionaryMenuFragment"
+            android:label="меню словаря"
+            tools:layout="@layout/fragment_dictionary_menu">
+            <argument
+                android:name="language_name"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_navigation_dictionary_menu_to_navigation_read_card"
+                app:destination="@id/navigation_read_all_card" />
+            <action
+                android:id="@+id/action_navigation_dictionary_menu_to_navigation_memorization"
+                app:destination="@id/navigation_memorization" />
+            <action
+                android:id="@+id/action_navigation_dictionary_menu_to_navigation_write_card"
+                app:destination="@id/navigation_write_card"
+                app:restoreState="true"/>
+            <action
+                android:id="@+id/action_navigation_dictionary_menu_to_fragment_add_card"
+                app:destination="@id/fragment_add_card" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_memorization"
+            android:name="com.example.learnmore.ui.readCard.MemorizationFragment"
+            android:label="Запоминание карт"
+            tools:layout="@layout/fragment_memorization" />
+        <fragment
+            android:id="@+id/navigation_read_all_card"
+            android:name="com.example.learnmore.ui.readCard.ReadCardFragment"
+            android:label="Чтение карт"
+            tools:layout="@layout/fragment_read_card">
+            <action
+                android:id="@+id/action_navigation_read_all_card_to_fragment_add_card"
+                app:destination="@id/fragment_add_card" />
+        </fragment>
+        <fragment
+            android:id="@+id/fragment_add_card"
+            android:name="com.example.learnmore.ui.readCard.AddCardFragment"
+            android:label="Добавить карту"
+            tools:layout="@layout/fragment_add_card" />
+        <fragment
+            android:id="@+id/navigation_write_card"
+            android:name="com.example.learnmore.ui.readCard.WriteCardFragment"
+            android:label="Письмо карт"
+            tools:layout="@layout/fragment_write_card" />
+    </navigation>
     <fragment
-        android:id="@+id/navigation_dictionary_menu"
-        android:name="com.example.learnmore.DictionaryMenuFragment"
-        android:label="меню словаря"
-        tools:layout="@layout/fragment_dictionary_menu">
-        <argument
-            android:name="language_name"
-            app:argType="string"/>
+        android:id="@+id/statisticsFragment"
+        android:name="com.example.learnmore.StatisticsFragment"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/appealsFragment"
+        android:name="com.example.learnmore.ui.appeal.AppealsFragment"
+        android:label="AppealsFragment" >
         <action
-            android:id="@+id/action_navigation_dictionary_menu_to_navigation_read_card"
-            app:destination="@id/navigation_read_all_card" />
-        <action
-            android:id="@+id/action_navigation_dictionary_menu_to_navigation_memorization"
-            app:destination="@id/navigation_memorization" />
-        <action
-            android:id="@+id/action_navigation_dictionary_menu_to_navigation_write_card"
-            app:destination="@id/navigation_write_card" />
-        <action
-            android:id="@+id/action_navigation_dictionary_menu_to_fragment_add_card"
-            app:destination="@id/fragment_add_card" />
+            android:id="@+id/action_appealsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" >
+            <argument
+                android:name="appeal_id"
+                app:argType="integer" />
+        </action>
     </fragment>
-
     <fragment
-        android:id="@+id/navigation_read_all_card"
-        android:name="com.example.learnmore.ui.readCard.ReadCardFragment"
-        android:label="Чтение карт"
-        tools:layout="@layout/fragment_read_card">
-        <action
-            android:id="@+id/action_navigation_read_all_card_to_fragment_add_card"
-            app:destination="@id/fragment_add_card" />
-    </fragment>
+        android:id="@+id/chatFragment"
+        android:name="com.example.learnmore.ui.appeal.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
 
-    <fragment
-        android:id="@+id/navigation_memorization"
-        android:name="com.example.learnmore.ui.readCard.MemorizationFragment"
-        android:label="Запоминание карт"
-        tools:layout="@layout/fragment_memorization"/>
-
-    <fragment
-        android:id="@+id/navigation_write_card"
-        android:name="com.example.learnmore.ui.readCard.WriteCardFragment"
-        android:label="Письмо карт"
-        tools:layout="@layout/fragment_write_card"/>
-
-    <fragment
-        android:id="@+id/fragment_add_card"
-        android:name="com.example.learnmore.ui.readCard.AddCardFragment"
-        android:label="Добавить карту"
-        tools:layout="@layout/fragment_add_card"/>
 
 </navigation>

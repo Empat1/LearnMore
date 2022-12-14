@@ -1,5 +1,6 @@
 package com.example.learnmore
 
+import com.example.learnmore.ui.readCard.WriteCardFragment
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +14,11 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    @Test
+    fun ApiTest(){
+        val writeCardFragment = WriteCardFragment()
+        writeCardFragment.gatLearn(1 , 1)
     }
 }

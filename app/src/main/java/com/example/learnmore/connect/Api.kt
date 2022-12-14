@@ -1,14 +1,15 @@
 package com.example.learnmore.connect
 
-import com.example.learnmore.data.model.Dictionary
-import com.example.learnmore.data.model.Users
-import com.example.learnmore.data.model.Word
+import com.example.learnmore.data.model.*
 import org.intellij.lang.annotations.Language
 import retrofit2.Call
 import retrofit2.http.*
 
 
 interface Api {
+    @GET("/word_for_learn/{user_id}")
+    fun getWordLearn(@Path("user_id") login: Int) : Call<List<Word>>
+
     @GET("/users/get-all")
     fun getAllProduct(): Call<List<Users>>
 
@@ -38,4 +39,16 @@ interface Api {
 
     @POST("/word/save/{dictionary_id}")
     fun saveWord(@Body word: Word, @Path("dictionary_id") dictionary_id: Int) : Call<Word>
+
+    @GET("learn/{user_id}/{word_id}")
+    fun getLearn(@Path("user_id") user_id: Int, @Path("word_id") word_id: Int) : Call<Learn>
+
+    @POST("/learn/save")
+    fun saveLearn(@Body learn: Learn?) : Call<Learn?>?
+
+    @GET("/appeal/get-user/{user_id}" )
+    fun getAppealForUser(@Path("user_id") user_id: Int) : Call<List<Appeal>>
+
+    @GET("/appeal/{appeal_id}")
+    fun getAppeal(@Path("appeal_id") appeal_id: Int): Call<Appeal>
 }

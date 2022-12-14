@@ -2,7 +2,6 @@ package com.example.learnmore
 
 import android.os.Bundle
 import android.util.Log
-import com.example.learnmore.DictionaryMenuFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,19 +9,13 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
-import com.example.learnmore.R
 import com.example.learnmore.data.model.Model
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DictionaryMenuFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class DictionaryMenuFragment : Fragment() {
     private var language: String? = null
 
-    public var TAG = "DictionaryMenuFragment"
+    private val TAG = "DictionaryMenuFragment"
 //    val args: DictionaryMenuFragmentAgrs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +34,11 @@ class DictionaryMenuFragment : Fragment() {
 
         val cardMemorization = view.findViewById<CardView>(R.id.card_memorization)
         val cardWatchAllCard = view.findViewById<CardView>(R.id.card_watch_all_card)
-        val cardAdd = view.findViewById<CardView>(R.id.card_add_card)
+//        val cardAdd = view.findViewById<CardView>(R.id.card_add_card)
         val cardWriteCard = view.findViewById<CardView>(R.id.card_write_card)
         val tvLearnLanguage = view.findViewById<TextView>(R.id.tv_learn_language)
 
-        tvLearnLanguage.text = "Изучаймый язык = " +  Model.language!!.language_name;
+        tvLearnLanguage.text = "Изучаймый язык = ${Model.language!!.language_name}"
 
         cardMemorization.setOnClickListener(View.OnClickListener {
             memorization()
@@ -53,9 +46,9 @@ class DictionaryMenuFragment : Fragment() {
         cardWatchAllCard.setOnClickListener(View.OnClickListener {
             watchAllCard()
         })
-        cardAdd.setOnClickListener (View.OnClickListener{
-            addCard()
-        })
+//        cardAdd.setOnClickListener (View.OnClickListener{
+//            addCard()
+//        })
         cardWriteCard.setOnClickListener ( View.OnClickListener{
             writeCard()
         } )
@@ -74,13 +67,13 @@ class DictionaryMenuFragment : Fragment() {
         }
     }
 
-    fun memorization(){
+    private fun memorization(){
         Log.i(TAG , "memorization")
         findNavController().navigate(R.id.action_navigation_dictionary_menu_to_navigation_memorization)
 
     }
 
-    fun watchAllCard(){
+    private fun watchAllCard(){
         Log.i(TAG , "watchAllCard")
         findNavController().navigate(R.id.navigation_read_all_card)
     }
@@ -90,7 +83,7 @@ class DictionaryMenuFragment : Fragment() {
         findNavController().navigate(R.id.action_navigation_dictionary_menu_to_fragment_add_card)
     }
 
-    fun writeCard(){
+    private fun writeCard(){
         Log.i(TAG , "writeCard")
         findNavController().navigate(R.id.action_navigation_dictionary_menu_to_navigation_write_card)
     }

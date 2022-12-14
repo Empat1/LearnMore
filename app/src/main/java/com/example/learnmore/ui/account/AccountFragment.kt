@@ -1,35 +1,47 @@
 package com.example.learnmore.ui.account
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.learnmore.R
 import com.example.learnmore.connect.Api
 import com.example.learnmore.connect.RetrofitService
 import com.example.learnmore.data.model.Language
 import com.example.learnmore.data.model.Model
-import com.example.learnmore.data.model.Model.user
 import com.example.learnmore.data.model.Users
 import com.example.learnmore.databinding.FragmentAccountBinding
-import com.example.learnmore.ui.readCard.ReadCardViewModel
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment
+import org.apache.poi.xwpf.usermodel.XWPFDocument
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileOutputStream
+import java.io.IOException
+
 
 class AccountFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var _binding: FragmentAccountBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
     val TAG = "AccountFragment"
 
@@ -47,13 +59,10 @@ class AccountFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val tvAccount = binding.accoutName
         val tvLogin = binding.accountLogin
         val tvLanguage = binding.accountLaguage
-//        val textView = binding.accountLaguage
         val spLanguage = binding.spAccountLearnLanguage
 
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
+
+        val btStatistic = binding.btnStatistic
         val btSave = binding.btnSave
 
         btSave.setOnClickListener(View.OnClickListener {
@@ -64,11 +73,15 @@ class AccountFragment : Fragment(), AdapterView.OnItemSelectedListener {
             addRequestServer(us)
         })
 
+        btStatistic.setOnClickListener(View.OnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_statisticsFragment)
+        })
+
         if(Model.user != null) {
             val us = Model.user!!
             Log.i(TAG , "Account to ${us}")
             tvAccount.setText(us.user_name)
-            tvLogin.setText(us.user_language)
+            tvLogin.setText(us.user_login)
             tvLanguage.setText(us.user_language)
 
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item ,strLanguage(us.languages!!))
@@ -78,7 +91,9 @@ class AccountFragment : Fragment(), AdapterView.OnItemSelectedListener {
         return root
     }
 
-    fun strLanguage(languages:List<Language>): ArrayList<String>{
+    fun strLanguage(
+
+        languages:List<Language>): ArrayList<String>{
         val arr = ArrayList<String>()
         languages.forEach{arr.add(it.language_name)}
         return arr
@@ -92,7 +107,9 @@ class AccountFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         Model.language = Model.user!!.languages!!.get(p2);
+        if(p1 != null && findNavController().currentBackStackEntry != null)
 
+        findNavController().clearBackStack(R.id.navigation_dashboard)
         println(Model.language)
     }
 
@@ -114,4 +131,6 @@ class AccountFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         })
     }
+
+
 }

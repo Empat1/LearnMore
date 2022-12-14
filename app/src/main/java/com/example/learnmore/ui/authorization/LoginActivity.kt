@@ -61,7 +61,6 @@ class LoginActivity : AppCompatActivity() {
                 Log.i(TAG , t.toString())
             }
 
-
         })
     }
 }

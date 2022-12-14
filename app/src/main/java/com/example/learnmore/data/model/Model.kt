@@ -8,4 +8,6 @@ object Model{
     var user: Users? = null //liveData
     var language : com.example.learnmore.data.model.Language? = null
     var dictionary:Dictionary?= null
+    var changes= false
+    var appeal: List<Appeal>? = null;
 }
